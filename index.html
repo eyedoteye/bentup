@@ -5,15 +5,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
-  background: 
-  linear-gradient(135deg, rgba(20,20,23,200), transparent 25%) -50px 0,
-  linear-gradient(225deg, rgba(64,29,50,100), transparent 25%) -50px 0,
-  linear-gradient(315deg, rgba(11,48,51,100), transparent 25%),
-  linear-gradient(45deg, rgba(20,20,23,200), transparent 25%);	
-  background-size: 5em 5em;
-  background-color: #0C0C0D;
-  padding: 0;
+padding: 0;
   margin: 0;
+  animation: bganim 16s normal infinite;
+  background:
+      linear-gradient(135deg, rgba(20,20,23), transparent 15%) -50px 0,
+      linear-gradient(225deg, rgba(64,29,50), transparent 15%) -50px 0,
+      linear-gradient(315deg, rgba(11,48,51), transparent 15%),
+      linear-gradient(45deg, rgba(20,20,23), transparent 15%);
+  background-size: 8vw 21vw;
+  background-color: #0C0C0D;
+}
+
+@keyframes bganim {
+  0% {
+    background-size: 8vw 21vw;
+  }
+  50% {
+    background-size: 8.08vw 21vw;
+  }
+  100% {
+    background-size: 8vw 21vw;
+  }
 }
   
 .fa {
