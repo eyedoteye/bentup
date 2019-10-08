@@ -256,7 +256,7 @@ table {
 }
 
 .spacer {
-  width: 5%;
+  width: 7%;
 }
 
 </style>
@@ -336,6 +336,10 @@ SC.stream('/tracks/690567997').then(function(player){
       syncScroll(time);
     }
   })
+  SCPlayer.on('pause',() => {
+    document.getElementById('playbutton').innerHTML = "PAUSED";
+    playing = false;
+  });
 });
 
 function getPos(el) {
@@ -467,6 +471,16 @@ seek = (event) => {
     }
 };
 
+seekToZero = () => {
+  var songLength = SCPlayer.getDuration();
+  SCPlayer.seek(0);
+  renderSeekBar(0, songLength);
+
+  if(scrollSync) {
+      syncScroll(0);
+    }
+}
+
 </script>
 </head>
 <body>
@@ -496,7 +510,7 @@ seek = (event) => {
   <a name="9"> 
     <div class="song">
     <table>
-      <td class='spacer'></td>
+      <td class='spacer' onclick='seekToZero()'></td>
       <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
       <td class='spacer'></td>
       <td><button onclick='togglePlay()' id='playbutton'>PAUSED</button></td>
