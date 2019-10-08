@@ -75,7 +75,6 @@ hr {
   height:6vh;
 }
 
-
 .upsidedown {
   display: inline-block;
 	-moz-transform: rotate(-180deg);  /* FF3.5+ */
@@ -247,8 +246,17 @@ h1 {
 }
 
 .seekBar {
-  width: 100%;
   background: #2a5d614a;
+  width: 70%;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+}
+
+.spacer {
+  width: 5%;
 }
 
 </style>
@@ -486,11 +494,16 @@ seek = (event) => {
   <a name="8"><div class="page">Our Saviours<img src="skela_webcomic_8.jpg"/><span class="upsidedown">Our Saviours</span></div></a>
   <hr/>
   <a name="9"> 
-    <table class="song">
+    <div class="song">
+    <table>
+      <td class='spacer'></td>
       <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
-      <td><button onclick='togglePlay()' id='playbutton'>PLAY</button></td>
+      <td class='spacer'></td>
+      <td><button onclick='togglePlay()' id='playbutton'>PAUSED</button></td>
+      <td class='spacer'></td>
       <td><button onclick='toggleSync()' id='syncbutton'>SYNCED</button></td>
     </table>
+    </div>
     <div class="page" id='page9'>Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">Long There Be</span></div>
   </a>
   <a name="10"><div class="page" id='page10'>Save Our Souls<img src="skela_webcomic_10.jpg"/><span class="upsidedown">Save Our Souls</span></div></a>
