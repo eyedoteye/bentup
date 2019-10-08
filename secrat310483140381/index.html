@@ -29,6 +29,10 @@ padding: 0;
   }
 }
 
+button {
+  height: 100%;
+}
+
 hr {
   border-style: dotted;
   border-width: 3px;
@@ -65,6 +69,10 @@ hr {
   max-width: 980px;
   background: #000000d0;
   text-align: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  height:6vh;
 }
 
 
@@ -238,6 +246,11 @@ h1 {
   color: white;
 }
 
+.seekBar {
+  width: 100%;
+  background: #2a5d614a;
+}
+
 </style>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145391411-1"></script>
@@ -254,8 +267,199 @@ h1 {
     client_id: 'dV0jpQ1RaaPeGmiJcmR05K9OPzSaUAZJ',
   });
 </script>
-<script src="soundcloud_widget.js"></script>
-<script src="scrollIt.js"></script>
+<script>
+
+function getViewportSize() {
+    return {
+        width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    };
+}
+
+
+
+scrollSync = true;
+enableScrollSync = () => {
+  scrollSync = true;
+  document.getElementById('syncbutton').innerHTML = "SYNCED";
+}
+disableScrollSync = () => {
+  scrollSync = false;
+  document.getElementById('syncbutton').innerHTML = "UNSYNCED";
+};
+
+window.onmousedown = (event) => {
+  if(document.body.clientWidth <= event.x) {
+    if(playing) {
+      disableScrollSync();
+    }
+  }
+};
+
+window.ontouchmove = (event) => {
+  if(playing) {
+      disableScrollSync();
+    }
+};
+
+window.onwheel = (event) => {
+  if(playing) {
+      disableScrollSync();
+    }
+};
+
+renderSeekBar = (time, songLength) => {
+  var newGradient = "".concat("linear-gradient(90deg , #bf156af0 ", String(time/songLength * 100),"%, #2a5d614a 0%)");
+  document.getElementById('seekBar').style.background = newGradient;
+};
+
+SCPlayer = 0;
+SC.stream('/tracks/690567997').then(function(player){
+  SCPlayer = player;
+  SCPlayer.play().then(()=>{
+    SCPlayer.pause();
+  });
+  SCPlayer.on('time',(time) => {
+    var songLength = SCPlayer.getDuration();
+
+    renderSeekBar(time, songLength);
+
+    if(scrollSync) {
+      syncScroll(time);
+    }
+  })
+});
+
+function getPos(el) {
+    // yay readability
+    for (var lx=0, ly=0;
+         el != null;
+         lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+    return {x: lx,y: ly};
+}
+
+scrolling = false;
+scrollStart = 0;
+scrollDestination = 0;
+scrollDuration = 0;
+scrollTime = 0;
+slowestSpeed = 10;
+smoothScroll = (dt) => {
+  if(scrolling) {
+    
+    scrollTime = scrollTime + dt;
+
+    var scrollPosition = (scrollTime / scrollDuration) * (scrollDestination - scrollStart) + scrollStart;
+
+    var velocity = scrollPosition - scrollStart;
+    if(velocity > 0 && scrollPosition > scrollDestination) {
+      scrollPosition = scrollDestination;
+    } else if (velocity < 0 && scrollPosition < scrollDestination) {
+      scrollPosition = scrollDestination;
+    }
+
+    window.scrollTo(0, scrollPosition);
+
+    if(scrollPosition == scrollDestination) {
+      scrolling = false;
+    }
+  }
+}
+
+updateSmoothScroll = (destination, duration) => {
+  scrollStart = document.defaultView.pageYOffset;
+  scrollDestination = destination;
+  scrollDuration = duration;
+
+  scrollTime = 0;
+  scrolling = true;
+}
+
+prevTimestamp = 0;
+loop = (timestamp) => {
+  var dt = timestamp - prevTimestamp
+
+  smoothScroll(dt);
+
+  prevTimestamp = timestamp
+  window.requestAnimationFrame(loop)
+};
+window.requestAnimationFrame(loop)
+
+scrollSpeedTime = 200;
+scrollWith = (pageid, time, starttime, endtime) => {
+  var page = document.getElementById(pageid);
+
+  start = getPos(page).y;
+  t = (time - starttime) / (endtime - starttime);
+  height = page.clientHeight - document.body.clientHeight;
+
+  start = start - document.body.clientHeight * 0.06;
+  height = height + document.body.clientHeight * 0.06;
+
+  if(height < 0) {
+    updateSmoothScroll(start + height / 2 - t * (height/2), scrollSpeedTime);
+  } else {
+    updateSmoothScroll(start + t * height, scrollSpeedTime);
+  }
+}
+
+syncScroll = (time) => {
+  if (time >= 18500) {
+    scrollWith('page10', 18500, 9000, 18500);
+  } else if (time >= 9000) {
+    scrollWith('page10', time, 9000, 18500);
+  } else {
+    scrollWith('page9', time, 0, 9000);
+  }
+};
+
+playing = false;
+togglePlay = () => {
+  if(SCPlayer != 0) {
+    
+    if(playing) {
+
+      SCPlayer.pause();
+      document.getElementById('playbutton').innerHTML = "PAUSED";
+    
+    } else {
+      
+      SCPlayer.play();
+      document.getElementById('playbutton').innerHTML = "PLAYING";
+
+    }
+
+    playing = !playing;
+
+  }
+};
+
+toggleSync = () => {
+  if(scrollSync) {
+    disableScrollSync();
+  }
+  else {
+    enableScrollSync();
+  }
+};
+
+seek = (event) => {
+  var songLength = SCPlayer.getDuration();
+  seekBar = document.getElementById('seekBar');
+  var seekBarWidth = seekBar.clientWidth;
+  
+  var seekTime = event.offsetX / seekBarWidth * songLength;
+  
+  SCPlayer.seek(seekTime);
+  renderSeekBar(seekTime, songLength);
+
+  if(scrollSync) {
+      syncScroll(seekTime);
+    }
+};
+
+</script>
 </head>
 <body>
   <div class="header">
@@ -282,60 +486,13 @@ h1 {
   <a name="8"><div class="page">Our Saviours<img src="skela_webcomic_8.jpg"/><span class="upsidedown">Our Saviours</span></div></a>
   <hr/>
   <a name="9"> 
-    <div id='playerWidget' class="song"></div> 
-    <script type="text/javascript">
-      widgetDiv = document.getElementById('playerWidget')
-      SC.oEmbed('https://soundcloud.com/akabaka/the-oddstrange', {
-        element: widgetDiv
-      }).then(() => {
-        widgetDivIFrame = widgetDiv.querySelector('iframe');
-        SCWidget = SC.Widget(widgetDivIFrame);
-        //console.log(SCWidget);
-
-        syncScroll = (currentPosition) => {
-          if(currentPosition >= 9000) {
-            scrollIt(document.getElementById('page10'), 500, 'easeInQuad');
-          } else {
-            scrollIt(document.getElementById('page9'), 500, 'easeInQuad');
-          }
-        };
-
-        seeking = false;
-        previousPosition = 0;
-        SCWidget.bind(SC.Widget.Events.PLAY_PROGRESS, (event) => {
-          setTimeout(() => {
-            if(!seeking && !paused) {
-              if(event.currentPosition >= 9000 && previousPosition < 9000) {
-                scrollIt(document.getElementById('page10'), 500, 'easeInQuad');
-              } else if(previousPosition == 0) {
-                scrollIt(document.getElementById('page9'), 500, 'easeInQuad');
-              }
-            }
-            previousPosition = event.currentPosition;
-          }, 300);
-        });
-        SCWidget.bind(SC.Widget.Events.SEEK, (event) => {
-          if(!paused) {
-            seekedAt = Date.now()
-            seeking = true;
-            setTimeout(() => {
-              if(Date.now() - seekedAt > 999) {
-                seeking = false;
-                syncScroll(event.currentPosition);
-              }
-            }, 1000);
-          }
-        });
-        SCWidget.bind(SC.Widget.Events.PAUSE, (event) => {
-          paused = true;
-        });
-        SCWidget.bind(SC.Widget.Events.PLAY, (event) => {
-          paused = false;
-        });
-      });
-      ///tracks/690567997
-    </script>
-  <div class="page" id='page9'>Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">Long There Be</span></div></a>
+    <table class="song">
+      <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
+      <td><button onclick='togglePlay()' id='playbutton'>PLAY</button></td>
+      <td><button onclick='toggleSync()' id='syncbutton'>SYNCED</button></td>
+    </table>
+    <div class="page" id='page9'>Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">Long There Be</span></div>
+  </a>
   <a name="10"><div class="page" id='page10'>Save Our Souls<img src="skela_webcomic_10.jpg"/><span class="upsidedown">Save Our Souls</span></div></a>
   <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a></div>
   <div class="sender-sub-main">
