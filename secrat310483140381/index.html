@@ -31,6 +31,7 @@ padding: 0;
 
 button {
   height: 100%;
+  width: 100%;
 }
 
 hr {
@@ -247,7 +248,7 @@ h1 {
 
 .seekBar {
   background: #2a5d614a;
-  width: 70%;
+  width: 64%;
 }
 
 table {
@@ -256,7 +257,15 @@ table {
 }
 
 .spacer {
-  width: 7%;
+  width: 3%;
+}
+
+.spacerLeft {
+  width: 10%;
+}
+
+.button {
+  width: 10%;
 }
 
 </style>
@@ -510,12 +519,12 @@ seekToZero = () => {
   <a name="9"> 
     <div class="song">
     <table>
-      <td class='spacer' onclick='seekToZero()'></td>
+      <td class='spacerLeft' onclick='seekToZero()'></td>
       <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
       <td class='spacer'></td>
-      <td><button onclick='togglePlay()' id='playbutton'>PAUSED</button></td>
+      <td class='button'><button onclick='togglePlay()' id='playbutton'>PAUSED</button></td>
       <td class='spacer'></td>
-      <td><button onclick='toggleSync()' id='syncbutton'>SYNCED</button></td>
+      <td class='button'><button onclick='toggleSync()' id='syncbutton'>SYNCED</button></td>
     </table>
     </div>
     <div class="page" id='page9'>Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">Long There Be</span></div>
