@@ -361,10 +361,12 @@ SC.stream('/tracks/690567997').then(function(player){
     }
   })
   SCPlayer.on('pause',() => {
-    var button = document.getElementById('playbutton');
-    button.innerHTML = "PAUSED";
-    button.style.color = "yellow";
-    playing = false;
+    if(playing) {
+      var button = document.getElementById('playbutton');
+      button.innerHTML = "PAUSED";
+      button.style.color = "yellow";
+      playing = false;
+    }
   });
 });
 
@@ -458,23 +460,25 @@ togglePlay = () => {
     
     if(playing) {
 
-      SCPlayer.pause();
+      playing = false;
 
       var button = document.getElementById('playbutton');
       button.innerHTML = "PAUSED";
       button.style.color = "yellow";
+
+      SCPlayer.pause();
     
     } else {
       
-      SCPlayer.play();
+      playing = true;
+
+      
       var button = document.getElementById('playbutton');
       button.innerHTML = "PLAYING";
       button.style.color = "lime";
 
+      SCPlayer.play();
     }
-
-    playing = !playing;
-
   }
 };
 
