@@ -32,6 +32,13 @@ padding: 0;
 button {
   height: 100%;
   width: 100%;
+  background-color: black;
+  border-style: dashed;
+  font-weight: bold;
+}
+
+.button {
+  width: 10%;
 }
 
 hr {
@@ -264,8 +271,12 @@ table {
   width: 10%;
 }
 
-.button {
-  width: 10%;
+#playbutton {
+  color: yellow;
+}
+
+#syncbutton {
+  color: lime;
 }
 
 </style>
@@ -298,11 +309,15 @@ function getViewportSize() {
 scrollSync = true;
 enableScrollSync = () => {
   scrollSync = true;
-  document.getElementById('syncbutton').innerHTML = "SYNCED";
+  var button = document.getElementById('syncbutton');
+  button.innerHTML = "SYNCED";
+  button.style.color = "lime";
 }
 disableScrollSync = () => {
   scrollSync = false;
-  document.getElementById('syncbutton').innerHTML = "UNSYNCED";
+  var button = document.getElementById('syncbutton');
+  button.innerHTML = "UNSYNCED";
+  button.style.color = "grey";
 };
 
 window.onmousedown = (event) => {
@@ -346,7 +361,9 @@ SC.stream('/tracks/690567997').then(function(player){
     }
   })
   SCPlayer.on('pause',() => {
-    document.getElementById('playbutton').innerHTML = "PAUSED";
+    var button = document.getElementById('playbutton');
+    button.innerHTML = "PAUSED";
+    button.style.color = "yellow";
     playing = false;
   });
 });
@@ -442,12 +459,17 @@ togglePlay = () => {
     if(playing) {
 
       SCPlayer.pause();
-      document.getElementById('playbutton').innerHTML = "PAUSED";
+
+      var button = document.getElementById('playbutton');
+      button.innerHTML = "PAUSED";
+      button.style.color = "yellow";
     
     } else {
       
       SCPlayer.play();
-      document.getElementById('playbutton').innerHTML = "PLAYING";
+      var button = document.getElementById('playbutton');
+      button.innerHTML = "PLAYING";
+      button.style.color = "lime";
 
     }
 
