@@ -346,19 +346,26 @@ renderSeekBar = (time, songLength) => {
 };
 
 SCPlayer = 0;
+playerReady = false;
 SC.stream('/tracks/690567997').then(function(player){
   SCPlayer = player;
   SCPlayer.play().then(()=>{
-    SCPlayer.pause();
+    SCPlayer.pause().then(()=> {
+      playerReady = true;
+    });
   });
   SCPlayer.on('time',(time) => {
-    var songLength = SCPlayer.getDuration();
 
-    renderSeekBar(time, songLength);
+    if(playerReady) {
+      var songLength = SCPlayer.getDuration();
+
+      renderSeekBar(time, songLength);
+    }
 
     if(scrollSync) {
       syncScroll(time);
     }
+    
   })
   SCPlayer.on('pause',() => {
     if(playing) {
