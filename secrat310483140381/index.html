@@ -350,9 +350,7 @@ playerReady = false;
 SC.stream('/tracks/690567997').then(function(player){
   SCPlayer = player;
   SCPlayer.play().then(()=>{
-    SCPlayer.pause().then(()=> {
-      playerReady = true;
-    });
+    SCPlayer.pause();
   });
   SCPlayer.on('time',(time) => {
 
@@ -365,7 +363,7 @@ SC.stream('/tracks/690567997').then(function(player){
     if(scrollSync) {
       syncScroll(time);
     }
-    
+
   })
   SCPlayer.on('pause',() => {
     if(playing) {
@@ -373,6 +371,7 @@ SC.stream('/tracks/690567997').then(function(player){
       button.innerHTML = "PAUSED";
       button.style.color = "yellow";
       playing = false;
+      playerReady = true;
     }
   });
 });
