@@ -249,6 +249,7 @@ SCPlayer = 0;
 playerReady = false;
 SC.stream('/tracks/690567997').then(function(player){
   SCPlayer = player;
+  SCPlayer.setVolume(0)
   SCPlayer.play().then(()=>{
     SCPlayer.pause();
   });
@@ -272,7 +273,10 @@ SC.stream('/tracks/690567997').then(function(player){
       button.style.color = "yellow";
       playing = false;
     }
-     playerReady = true;
+    if(!playerReady){
+      SCPlayer.setVolume(1);
+      playerReady = true;
+    }
   });
 });
 
