@@ -300,7 +300,6 @@ smoothScroll = (dt) => {
     scrollTime = scrollTime + dt;
 
     var scrollPosition = (scrollTime / scrollDuration) * (scrollDestination - scrollStart) + scrollStart;
-
     var velocity = scrollPosition - scrollStart;
     if(velocity > 0 && scrollPosition > scrollDestination) {
       scrollPosition = scrollDestination;
@@ -337,30 +336,48 @@ loop = (timestamp) => {
 window.requestAnimationFrame(loop)
 
 scrollSpeedTime = 200;
-scrollWith = (pageid, time, starttime, endtime) => {
+scrollFromTo = (pageid, startP, endP, time, starttime, endtime) => {
   var page = document.getElementById(pageid);
 
-  start = getPos(page).y;
-  t = (time - starttime) / (endtime - starttime);
-  height = page.clientHeight - document.body.clientHeight;
+  var start = getPos(page).y;
+  var t = (time - starttime) / (endtime - starttime);
+  var height = page.clientHeight - document.body.clientHeight;
+  if(height < 0) {
+    height = - height / 2;
+    start = start - height;
+  }
 
   start = start - document.body.clientHeight * 0.06;
   height = height + document.body.clientHeight * 0.06;
 
-  if(height < 0) {
-    updateSmoothScroll(start + height / 2 - t * (height/2), scrollSpeedTime);
-  } else {
-    updateSmoothScroll(start + t * height, scrollSpeedTime);
-  }
+  var end = start + height * endP;
+  start = start + height * startP;
+  height = end - start;
+
+  updateSmoothScroll(start + t * height, scrollSpeedTime);
 }
 
 syncScroll = (time) => {
-  if (time >= 18500) {
-    scrollWith('page10', 18500, 9000, 18500);
+  if (time > 43000) {
+    scrollFromTo('page11', 0.6, 0.6, 43000, 0, 43000);
+  } else if (time >= 41900) {
+    scrollFromTo('page11', 0.7, 0.6, time, 41900, 43000);
+  } else if (time >= 40000) {
+    scrollFromTo('page11', 0.7, 0.7, time, 40000, 41900);
+  } else if (time >= 36500) {
+    scrollFromTo('page11', 0.4, 0.7, time, 36500, 40000);
+  } else if (time >= 35000) {
+    scrollFromTo('page11', 0.4, 0.4, time, 35000, 36500);
+  } else if (time >= 31000) {
+    scrollFromTo('page11', 1, 0.4, time, 31000, 35000);
+  } else if (time >= 28750) {
+    scrollFromTo('page11', 1, 1, time, 28650, 31000);
+  } else if (time >= 18500) {
+    scrollFromTo('page11', 0, 1, time, 18500, 28750);
   } else if (time >= 9000) {
-    scrollWith('page10', time, 9000, 18500);
+    scrollFromTo('page10', 0, 1, time, 9000, 18500);
   } else {
-    scrollWith('page9', time, 0, 9000);
+    scrollFromTo('page9', 0, 1, time, 0, 9000);
   }
 };
 
@@ -435,7 +452,7 @@ seekToZero = () => {
       <h1>Skela</h1>
     </div>
   </a>
-  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a></div></a>
+  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a></div>
   <hr/>
   <div class="QuickNav"><a href="#Bottom">\\//</a></div>
   <hr/>
@@ -493,9 +510,13 @@ seekToZero = () => {
   <hr/>
   <a name="10"><div class="page" id='page10'>10 : Save Our Souls<img src="skela_webcomic_10.jpg"/><span class="upsidedown">10 : Save Our Souls</span></div></a>
   <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="11"><div class="page" id='page11'>11 : Doom<img src="skela_webcomic_11.jpg"/><span class="upsidedown">11 : Doom</span></div></a>
+  <hr/>
   <div class="QuickNav"><a href="#Top">//\\</a></div>
   <hr/>
-  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a></div>
+  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a></div>
   <a name="Bottom">
     <div class="Footer">
       <div>
