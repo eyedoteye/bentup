@@ -4,6 +4,11 @@
   <link rel="shortcut icon" type="image/x-icon" href="akabaka%20favicon.png"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
+html {
+  overflow: initial;
+}
+
 body {
 padding: 0;
   margin: 0;
@@ -13,20 +18,20 @@ padding: 0;
       linear-gradient(225deg, rgba(64,29,50), transparent 15%) -50px 0,
       linear-gradient(315deg, rgba(11,48,51), transparent 15%),
       linear-gradient(45deg, rgba(20,20,23), transparent 15%);
-  background-size: 8vw 21vw;
+  background-size: 8vw 30vw;
   background-color: #0C0C0D;
 }
 
-@keyframes bganim {
-  0% {
-    background-size: 8vw 21vw;
-  }
-  53% {
-    background-size: 8.08vw 21vw;
-  }
-  100% {
-    background-size: 8vw 21vw;
-  }
+button {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  border-style: dashed;
+  font-weight: bold;
+}
+
+.button {
+  width: 10%;
 }
 
 hr {
@@ -40,7 +45,6 @@ hr {
   text-align: center;
   text-decoration: none;
   color: #FFFFFF;
-  float: right;
   margin: 10px;
 }
 
@@ -65,8 +69,11 @@ hr {
   max-width: 980px;
   background: #000000d0;
   text-align: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  height:6vh;
 }
-
 
 .upsidedown {
   display: inline-block;
@@ -74,132 +81,32 @@ hr {
 	-o-transform: rotate(-180deg);  /* Opera 10.5 */
 	-webkit-transform: rotate(-180deg);  /* Safari 3.1+, Chrome */
 }
+
 .page img {
   width: 100%;
   margin-bottom: 2px;
 }
-.subscription-form input {
-  display: inline-block;
-  padding: 4px;
-  font-size: 13px;
-  color: #555555;
-  border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  width: 100%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  margin-bottom: 10px;
-}
-.checkbox_wrapper {
-  display: inline-block;
-  padding: 4px;
-  width: 100%;
-}
-.subscription-form input.checkbox_type, .subscription-form .checkbox_label {
-  width: auto;
-  vertical-align: middle;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.subscription-form .checkbox_label {
-  display: inline-block;
-  line-height: 18px;
-  margin-left: 4px;
-  font-size: 11px;
-  font-family: helvetica;
-  color: #ffffff;
-}
-.subscription-form input {
-  width: 400px;
-  background-color: #181016;
-  border: 4px dotted #391b2d;
-  border-radius: 0px;
-  -webkit-border-radius: 0px;
-  display: block;
-  margin: 5px;
-}
-.btn-grad {
-  background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);
-  background: -o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);
-  background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);
-  background: linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);
-}
-.subscription-form-fields {
-  margin-top: 10px;
-}
-.subscription-form {
+
+.footer {
   padding: 20px;
   margin: 0 auto;
   background-image: linear-gradient(#0c0c0d00,#0c0c0d80,#0c0c0d);
 }
-.subscription-form h4 {
-  font-family: verdana;
-  color: #ffffff;
-  font-size: 30px;
-  margin: 0px;
-}
-.subscription-thank-you {
-  font-family: helvetica;
-  color: #ffffff;
-  font-size: 11px;
-}
-.subscription-form-content {
-  font-family: helvetica;
-  color: #ffffff;
-  font-size: 11px;
-}
-.subscription-form button {
-  margin-top: 8px;
-  border-radius: 30px;
-  padding: 5px;
-  display: block;
-  text-align: center;
-  border: none;
-  color: #586d30;
-  background-color: #3c1b30;
-  font-size: 20px;
-  font-family: monospace;
-}
-  
-.sender-sub-main {
-  display: table;
-  width: 100%;
-}
-.sender-sub-inner {
-  display: table-cell;
-  vertical-align: middle;
-}
-.sender-link-wrapper {
-  display: block;
-  position: relative;
-  margin-top: 16px;
-  opacity: .6;
-}
-.sender-link {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 12px;
-  text-decoration: none !important;
-  color: #555;
-}
-.sender-link img {
-  width: 16px;
-  height: 16px;
-  margin-right: 2px;
-  vertical-align: text-bottom;
-}
+
 .copyright {
   color: #ff7bc9;
   float: right;
   opacity: 0.45;
 }
+
 .copyright a {
   color: #5ac1ca;
 }
+
 .header {
   margin: 0px;
 }
+
 h1 {
   color: white;
   text-align: center;
@@ -232,10 +139,44 @@ h1 {
 .index {
   text-align: center;
   font-size: 3em;
-  margin-bottom: -14px;
 }
 .index a {
   color: white;
+}
+
+.quicknav {
+    text-align: center;
+}
+.quicknav a {
+  color: white;
+  font-size: 3em;
+  text-decoration: none;
+}
+
+.seekBar {
+  background: #2a5d614a;
+  width: 64%;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+}
+
+.spacer {
+  width: 3%;
+}
+
+.spacerLeft {
+  width: 10%;
+}
+
+#playbutton {
+  color: yellow;
+}
+
+#syncbutton {
+  color: lime;
 }
 
 </style>
@@ -248,65 +189,344 @@ h1 {
 
   gtag('config', 'UA-145391411-1');
 </script>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+<script>
+  SC.initialize({
+    client_id: 'dV0jpQ1RaaPeGmiJcmR05K9OPzSaUAZJ',
+  });
+</script>
+<script>
+
+function getViewportSize() {
+    return {
+        width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    };
+}
+
+
+
+scrollSync = true;
+enableScrollSync = () => {
+  scrollSync = true;
+  var button = document.getElementById('syncbutton');
+  button.innerHTML = "SYNCED";
+  button.style.color = "lime";
+}
+disableScrollSync = () => {
+  scrollSync = false;
+  var button = document.getElementById('syncbutton');
+  button.innerHTML = "UNSYNCED";
+  button.style.color = "grey";
+};
+
+window.onmousedown = (event) => {
+  if(document.body.clientWidth <= event.x) {
+    if(playing) {
+      disableScrollSync();
+    }
+  }
+};
+
+window.ontouchmove = (event) => {
+  if(playing) {
+      disableScrollSync();
+    }
+};
+
+window.onwheel = (event) => {
+  if(playing) {
+      disableScrollSync();
+    }
+};
+
+renderSeekBar = (time, songLength) => {
+  var newGradient = "".concat("linear-gradient(90deg , #bf156af0 ", String(time/songLength * 100),"%, #2a5d614a 0%)");
+  document.getElementById('seekBar').style.background = newGradient;
+};
+
+SCPlayer = 0;
+playerReady = false;
+SC.stream('/tracks/690567997').then(function(player){
+  SCPlayer = player;
+  SCPlayer.setVolume(0)
+  SCPlayer.play().then(()=>{
+    SCPlayer.pause();
+  });
+  SCPlayer.on('time',(time) => {
+    if(playerReady) {
+
+      var songLength = SCPlayer.getDuration();
+
+      renderSeekBar(time, songLength);
+
+      if(scrollSync) {
+        syncScroll(time);
+      }
+    
+    }
+  })
+  SCPlayer.on('pause',() => {
+    if(playing) {
+      var button = document.getElementById('playbutton');
+      button.innerHTML = "PAUSED";
+      button.style.color = "yellow";
+      playing = false;
+    }
+    if(!playerReady){
+      SCPlayer.setVolume(1);
+      playerReady = true;
+    }
+  });
+});
+
+function getPos(el) {
+    // yay readability
+    for (var lx=0, ly=0;
+         el != null;
+         lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+    return {x: lx,y: ly};
+}
+
+scrolling = false;
+scrollStart = 0;
+scrollDestination = 0;
+scrollDuration = 0;
+scrollTime = 0;
+slowestSpeed = 10;
+smoothScroll = (dt) => {
+  if(scrolling) {
+    
+    scrollTime = scrollTime + dt;
+
+    var scrollPosition = (scrollTime / scrollDuration) * (scrollDestination - scrollStart) + scrollStart;
+    var velocity = scrollPosition - scrollStart;
+    if(velocity > 0 && scrollPosition > scrollDestination) {
+      scrollPosition = scrollDestination;
+    } else if (velocity < 0 && scrollPosition < scrollDestination) {
+      scrollPosition = scrollDestination;
+    }
+
+    window.scrollTo(0, scrollPosition);
+
+    if(scrollPosition == scrollDestination) {
+      scrolling = false;
+    }
+  }
+}
+
+updateSmoothScroll = (destination, duration) => {
+  scrollStart = document.defaultView.pageYOffset;
+  scrollDestination = destination;
+  scrollDuration = duration;
+
+  scrollTime = 0;
+  scrolling = true;
+}
+
+prevTimestamp = 0;
+loop = (timestamp) => {
+  var dt = timestamp - prevTimestamp
+
+  smoothScroll(dt);
+
+  prevTimestamp = timestamp
+  window.requestAnimationFrame(loop)
+};
+window.requestAnimationFrame(loop)
+
+scrollSpeedTime = 200;
+scrollFromTo = (pageid, startP, endP, time, starttime, endtime) => {
+  var page = document.getElementById(pageid);
+
+  var start = getPos(page).y;
+  var t = (time - starttime) / (endtime - starttime);
+  var height = page.clientHeight - document.body.clientHeight;
+  if(height < 0) {
+    height = - height / 2;
+    start = start - height;
+  }
+
+  start = start - document.body.clientHeight * 0.06;
+  height = height + document.body.clientHeight * 0.06;
+
+  var end = start + height * endP;
+  start = start + height * startP;
+  height = end - start;
+
+  updateSmoothScroll(start + t * height, scrollSpeedTime);
+}
+
+syncScroll = (time) => {
+  if (time > 43000) {
+    scrollFromTo('page11', 0.6, 0.6, 43000, 0, 43000);
+  } else if (time >= 41900) {
+    scrollFromTo('page11', 0.7, 0.6, time, 41900, 43000);
+  } else if (time >= 40000) {
+    scrollFromTo('page11', 0.7, 0.7, time, 40000, 41900);
+  } else if (time >= 36500) {
+    scrollFromTo('page11', 0.4, 0.7, time, 36500, 40000);
+  } else if (time >= 35000) {
+    scrollFromTo('page11', 0.4, 0.4, time, 35000, 36500);
+  } else if (time >= 31000) {
+    scrollFromTo('page11', 1, 0.4, time, 31000, 35000);
+  } else if (time >= 28750) {
+    scrollFromTo('page11', 1, 1, time, 28650, 31000);
+  } else if (time >= 18500) {
+    scrollFromTo('page11', 0, 1, time, 18500, 28750);
+  } else if (time >= 9000) {
+    scrollFromTo('page10', 0, 1, time, 9000, 18500);
+  } else {
+    scrollFromTo('page9', 0, 1, time, 0, 9000);
+  }
+};
+
+playing = false;
+togglePlay = () => {
+  if(SCPlayer != 0) {
+    
+    if(playing) {
+
+      playing = false;
+
+      var button = document.getElementById('playbutton');
+      button.innerHTML = "PAUSED";
+      button.style.color = "yellow";
+
+      SCPlayer.pause();
+    
+    } else {
+      
+      playing = true;
+
+      
+      var button = document.getElementById('playbutton');
+      button.innerHTML = "PLAYING";
+      button.style.color = "lime";
+
+      SCPlayer.play();
+    }
+  }
+};
+
+toggleSync = () => {
+  if(scrollSync) {
+    disableScrollSync();
+  }
+  else {
+    enableScrollSync();
+  }
+};
+
+seek = (event) => {
+  var songLength = SCPlayer.getDuration();
+  seekBar = document.getElementById('seekBar');
+  var seekBarWidth = seekBar.clientWidth;
+  
+  var seekTime = event.offsetX / seekBarWidth * songLength;
+  
+  SCPlayer.seek(seekTime);
+  renderSeekBar(seekTime, songLength);
+
+  if(scrollSync) {
+      syncScroll(seekTime);
+    }
+};
+
+seekToZero = () => {
+  var songLength = SCPlayer.getDuration();
+  SCPlayer.seek(0);
+  renderSeekBar(0, songLength);
+
+  if(scrollSync) {
+      syncScroll(0);
+    }
+}
+
+</script>
 </head>
 <body>
-  <div class="header">
-    <span class="presents"><i>akabaka and MisterWillow present</i></span>
-    <h1>Skela</h1>
-  </div>
-  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a></div>
+  <a name="Top">
+    <div class="header">
+      <span class="presents"><i>akabaka and MisterWillow present</i></span>
+      <h1>Skela</h1>
+    </div>
+  </a>
+  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a></div>
+  <hr/>
+  <div class="QuickNav"><a href="#Bottom">\\//</a></div>
+  <hr/>
   <a name="T"><div class="page">*<img src="skela_webcomic_0.jpg"/><span class="upsidedown">*</span></div></a>
   <hr/>
-  <a name="1"><div class="page">Window Shopping<img src="skela_webcomic_1.jpg"/><span class="upsidedown">Window Shopping</span></div></a>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
   <hr/>
-  <a name="2"><div class="page">Wikaboo Woods<img src="skela_webcomic_2.jpg"/><span class="upsidedown">Wikaboo Woods</span></div></a>
+  <a name="1"><div class="page">1 : Window Shopping<img src="skela_webcomic_1.jpg"/><span class="upsidedown">1 : Window Shopping</span></div></a>
   <hr/>
-  <a name="3"><div class="page">This Is Skela<img src="skela_webcomic_3.jpg"/><span class="upsidedown">This Is Skela</span></div></a>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
   <hr/>
-  <a name="4"><div class="page">Bogals<img src="skela_webcomic_4.jpg"/><span class="upsidedown">Bogals</span></div></a>
+  <a name="2"><div class="page">2 : Wikaboo Woods<img src="skela_webcomic_2.jpg"/><span class="upsidedown">2 : Wikaboo Woods</span></div></a>
   <hr/>
-  <a name="5"><div class="page">The Nature Of Prophecies<img src="skela_webcomic_5.jpg"/><span class="upsidedown">The Nature Of Prophecies</span></div></a>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
   <hr/>
-  <a name="6"><div class="page">As With Prayer<img src="skela_webcomic_6.jpg"/><span class="upsidedown">As With Prayer</span></div></a>
+  <a name="3"><div class="page">3 : This Is Skela<img src="skela_webcomic_3.jpg"/><span class="upsidedown">3 : This Is Skela</span></div></a>
   <hr/>
-  <a name="7"><div class="page">Fungoids<img src="skela_webcomic_7.jpg"/><span class="upsidedown">Fungoids</span></div></a>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
   <hr/>
-  <a name="8"><div class="page">Our Saviours<img src="skela_webcomic_8.jpg"/><span class="upsidedown">Our Saviours</span></div></a>
+  <a name="4"><div class="page">4 : Bogals<img src="skela_webcomic_4.jpg"/><span class="upsidedown">4 : Bogals</span></div></a>
   <hr/>
-  <a name="9"></a><div class="song"><iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/690567997%3Fsecret_token%3Ds-est4V&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></div>
-  <div class="page">Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">Long There Be</span></div></a>
-  <a name="10"><div class="page">Save Our Souls<img src="skela_webcomic_10.jpg"/><span class="upsidedown">Save Our Souls</span></div></a>
-  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a></div>
-  <div class="sender-sub-main">
-    <div class="sender-sub-inner">
-      <div class="subscription-form">
-        <h4 class="dont-break-out">Want More Skela?</h4>
-        <div class="subscription-form-content">
-          Sub to be notified of new content!   <i>And magic secrets.</i><br/>
-          We'll never spam, but we may hit your spam filter.   <i>Let us free!</i>
-        </div>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="5"><div class="page">5 : The Nature Of Prophecies<img src="skela_webcomic_5.jpg"/><span class="upsidedown">5 : The Nature Of Prophecies</span></div></a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="6"><div class="page">6 : As With Prayer<img src="skela_webcomic_6.jpg"/><span class="upsidedown">6 : As With Prayer</span></div></a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="7"><div class="page">7 : Fungoids<img src="skela_webcomic_7.jpg"/><span class="upsidedown">7 : Fungoids</span></div></a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="8"><div class="page">8 : Our Saviours<img src="skela_webcomic_8.jpg"/><span class="upsidedown">8 : Our Saviours</span></div></a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="9"> 
+    <div class="song">
+    <table>
+      <td class='spacerLeft' onclick='seekToZero()'></td>
+      <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
+      <td class='spacer'></td>
+      <td class='button'><button onclick='togglePlay()' id='playbutton'>PAUSED</button></td>
+      <td class='spacer'></td>
+      <td class='button'><button onclick='toggleSync()' id='syncbutton'>SYNCED</button></td>
+    </table>
+    </div>
+    <div class="page" id='page9'>9 : Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">9 : Long There Be</span></div>
+  </a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="10"><div class="page" id='page10'>10 : Save Our Souls<img src="skela_webcomic_10.jpg"/><span class="upsidedown">10 : Save Our Souls</span></div></a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="11"><div class="page" id='page11'>11 : Doom<img src="skela_webcomic_11.jpg"/><span class="upsidedown">11 : Doom</span></div></a>
+  <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a></div>
+  <hr/>
+  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a></div>
+  <a name="Bottom">
+    <div class="Footer">
+      <div>
         <a href="https://twitter.com/iamakabaka" class="fa fa-twitter"></a>
         <a href="https://soundcloud.com/akabaka" class="fa fa-soundcloud"></a>
-        <div class="subscription-form-fields">
-          <form id="sender-subscribe" action="https://app.sender.net/forms/sender_subscription/3675/e0ff0487" method="POST">
-            <div class="subscription-form-fields" id="subscription-form-fields">
-              <input name="firstname" class="text_type" id="firstname" data-label="First name" placeholder="First name" required>
-              <input name="email" class="email_type" id="email" data-label="Email" placeholder="Email" required>
-            </div>
-            <button type="submit" >Subscribe</button>
-          </form>
-        </div>
-        <span class="sender-link-wrapper">
-          <a class="sender-link" href="http://sender.net" title="Email marketing services">
-            <img src="https://app.sender.net/favicon.png"/>
-            <span>Powered by Sender</span>
-          </a>
-        </span>
-        <span class="copyright">
-            All original content Copyright 2016-Present akabaka & <a href="https://twitter.com/MisterWillow_">Joseph C. Weide</a>
-        </span>
+      </div>
+      <div class="copyright">
+          All original content Copyright 2016-Present akabaka & <a href="https://twitter.com/MisterWillow_">Joseph C. Weide</a>
       </div>
     </div>
-  </div>
+  </bottom>
 </body>
 </html>
