@@ -358,8 +358,10 @@ scrollFromTo = (pageid, startP, endP, time, starttime, endtime) => {
 }
 
 syncScroll = (time) => {
-  if (time > 43000) {
-    scrollFromTo('page11', 0.6, 0.6, 43000, 0, 43000);
+  if (time > 53100) {
+    scrollFromTo('page12', 0, 1, 53100, 0, 53100);
+  } else if (time > 43000) {
+    scrollFromTo('page12', 0, 1, time, 43000, 53100);
   } else if (time >= 41900) {
     scrollFromTo('page11', 0.7, 0.6, time, 41900, 43000);
   } else if (time >= 40000) {
@@ -452,7 +454,7 @@ seekToZero = () => {
       <h1>Skela</h1>
     </div>
   </a>
-  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a></div>
+  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a> <a href="#12">12</a></div>
   <hr/>
   <div class="QuickNav"><a href="#Bottom">\\//</a></div>
   <hr/>
@@ -514,9 +516,13 @@ seekToZero = () => {
   <hr/>
   <a name="11"><div class="page" id='page11'>11 : Doom<img src="skela_webcomic_11.jpg"/><span class="upsidedown">11 : Doom</span></div></a>
   <hr/>
+  <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
+  <hr/>
+  <a name="12"><div class="page" id='page12'>12 : Inordinate Power<img src="skela_webcomic_12.jpg"/><span class="upsidedown">12 : Inordinate Power</span></div></a>
+  <hr/>
   <div class="QuickNav"><a href="#Top">//\\</a></div>
   <hr/>
-  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a></div>
+  <div class="Index"><a href="#T">T</a> <a href="#1">1</a> <a href="#2">2</a> <a href="#3">3</a> <a href="#4">4</a> <a href="#5">5</a> <a href="#6">6</a> <a href="#7">7</a> <a href="#8">8</a> <a href="#9">9</a> <a href="#10">10</a> <a href="#11">11</a> <a href="#12">12</a></div>
   <a name="Bottom">
     <div class="Footer">
       <div>
