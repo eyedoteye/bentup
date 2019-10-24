@@ -364,7 +364,7 @@ syncRotation = (time) => {
   var page = document.getElementById('page13');
   var amt = 2350;
   if(time > 56000) {
-    page.style.transform = "rotate(".concat(((time - 56000) % (amt * 4)) / (amt * 4) * -360).concat("deg)");
+    page.style.transform = "rotate(".concat((((time - 56000) % (amt * 4)) / (amt * 4) * - 360) + 45).concat("deg)");
    } else {
     page.style.transform = "rotate(0)";
   }
