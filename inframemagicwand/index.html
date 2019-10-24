@@ -360,56 +360,34 @@ scrollFromTo = (pageid, startP, endP, time, starttime, endtime) => {
   updateSmoothScroll(start + t * height, scrollSpeedTime);
 }
 
+rotmod = 0.8;
+rotoffset = 0;
 syncRotation = (time) => {
   var page = document.getElementById('page13').getElementsByTagName('img')[0];
+
   var amt = 2350;
-  if(time > 58100 + amt * 13.7) {
-    page.style.transform = "rotate(-180deg)";
-  } else if(time > 56000 && time < 58100 + amt * 13.7) {
+
+  var rotation = 0;
+
+  if (time > 58100 + amt * (13 + rotmod * 0.9)) {
+
+    rotation = -180;
+
+  } else if (time > 56000 && time < 58100 + amt * (13 + rotmod * 0.9)) {
+
     var t = (time - 56000) % (amt * 4);
     var p =  (time - 56000) % amt;
-    if (p > amt * 0.8) {
-      rotation = Math.floor(t / amt) * -90 + (p - amt * 0.8) / (amt * 0.2) * -90;
+
+    var rotation = Math.floor(t / amt) * -90 + rotoffset;
+
+    if (p > amt * rotmod) {
+      rotation = rotation + (p - amt * rotmod) / (amt * (1 - rotmod)) * -90;
     }
-    else {
-      rotation = Math.floor(t / amt) * -90;
-    }
-    //var rotation = (() / (amt * 4) * 360) + 45
-    page.style.transform = "rotate(".concat(rotation).concat("deg)");
-   } else {
-    page.style.transform = "rotate(0deg)";
+
   }
-  // if(time > 58100 + amt * 13) {
-  //   page.style.transform = "rotate(-180deg)";
-  // } else if(time > 58100 + amt * 12) {
-  //   page.style.transform = "rotate(-90deg)";
-  // } else if(time > 58100 + amt * 11) {
-  //   page.style.transform = "rotate(0)";
-  // } else if(time > 58100 + amt * 10) {
-  //   page.style.transform = "rotate(-270deg)";
-  // } else if(time > 58100 + amt * 9) {
-  //   page.style.transform = "rotate(-180deg)";
-  // } else if(time > 58100 + amt * 8) {
-  //   page.style.transform = "rotate(-90deg)";
-  // } else if(time > 58100 + amt * 7) {
-  //   page.style.transform = "rotate(0)";
-  // } else if(time > 58100 + amt * 6) {
-  //   page.style.transform = "rotate(-270deg)";
-  // } else if(time > 58100 + amt * 5) {
-  //   page.style.transform = "rotate(-180deg)";
-  // } else if(time > 58100 + amt * 4) {
-  //   page.style.transform = "rotate(-90deg)";
-  // } else if(time > 58100 + amt * 3) {
-  //   page.style.transform = "rotate(0)";
-  // } else if(time > 58100 + amt * 2) {
-  //   page.style.transform = "rotate(-270deg)";
-  // } else if(time > 58100 + amt * 1) {
-  //   page.style.transform = "rotate(-180deg)";
-  // } else if(time > 58100) {
-  //   page.style.transform = "rotate(-90deg)";
-  // } else {
-  //   page.style.transform = "rotate(0)";
-  // }
+
+  page.style.transform = "rotate(".concat(rotation).concat("deg)") ;
+
 }
 
 syncScroll = (time) => {
@@ -586,8 +564,7 @@ seekToZero = () => {
   <hr/>
   <div class="QuickNav"><a href="#Top">//\\</a><a href="#Bottom">\\//</a></div>
   <hr/>
-  <a name="9"> 
-    <div class="song">
+  <div class="song">
     <table>
       <td class='spacerLeft' onclick='seekToZero()'></td>
       <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
@@ -597,6 +574,7 @@ seekToZero = () => {
       <td class='button'><button onclick='toggleSync()' id='syncbutton'>SYNCED</button></td>
     </table>
     </div>
+  <a name="9">
     <div class="page" id='page9'>9 : Long There Be<img src="skela_webcomic_9.jpg"/><span class="upsidedown">9 : Long There Be</span></div>
   </a>
   <hr/>
