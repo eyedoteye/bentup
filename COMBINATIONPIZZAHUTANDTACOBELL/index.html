@@ -362,7 +362,9 @@ scrollFromTo = (pageid, startP, endP, time, starttime, endtime) => {
 syncRotation = (time) => {
   var page = document.getElementById('page13');
   var amt = 2350;
-  if(time > 56000) {
+  if(time > 58100 + amt * 13) {
+    page.style.transform = "rotate(-180deg)";
+  } else if(time > 56000 && time < 58100 + amt * 13) {
     var t = (time - 56000) % (amt * 4);
     var p =  (time - 56000) % amt;
     if (p > amt * 0.8) {
@@ -375,7 +377,7 @@ syncRotation = (time) => {
     //var rotation = (() / (amt * 4) * 360) + 45
     page.style.transform = "rotate(".concat(rotation).concat("deg)");
    } else {
-    page.style.transform = "rotate(0)";
+    page.style.transform = "rotate(0deg)";
   }
   // if(time > 58100 + amt * 13) {
   //   page.style.transform = "rotate(-180deg)";
