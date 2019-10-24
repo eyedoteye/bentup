@@ -360,6 +360,12 @@ scrollFromTo = (pageid, startP, endP, time, starttime, endtime) => {
   updateSmoothScroll(start + t * height, scrollSpeedTime);
 }
 
+pageFitsScreen = (pageid) => {
+  var page = document.getElementById(pageid);
+
+  return page.clientHeight < document.body.clientHeight;
+}
+
 rotmod = 0.8;
 rotoffset = 0;
 syncRotation = (time) => {
@@ -393,37 +399,101 @@ syncRotation = (time) => {
 syncScroll = (time) => {
   var amt = 2350;
   if(time > 58100 + amt * 14) {
-    scrollFromTo('page13', 0, 1, time, 58100 + amt * 14, 58100 + amt * 14.5);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 1, time, 58100 + amt * 14, 58100 + amt * 14.5);
+    } else {
+      scrollFromTo('page13', 0, 1, time, 58100 + amt * 14, 58100 + amt * 14.5);
+    }
   } else if(time > 58100 + amt * 13) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 12) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 11) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 10) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 9) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 8) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 7) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 6) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 5) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 4) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 3) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 2) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if(time > 58100 + amt * 1) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if (time > 58100) {
-    scrollFromTo('page13', 0.4, 0.42, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0.42, 0.42, 1, 0, 1);
+    }
   } else if (time > 56000) {
-    scrollFromTo('page13', 0, 0, 1, 0, 1);
+    if(pageFitsScreen('page13')) {
+      scrollFromTo('page13', 0.5, 0.5, 1, 0, 1);
+    } else {
+      scrollFromTo('page13', 0, 0, 1, 0, 1);
+    }
   } else if (time > 54500) {
     scrollFromTo('page13', 0.5, 0.5, time, 54500, 56000);
   } else if (time > 53100) {
