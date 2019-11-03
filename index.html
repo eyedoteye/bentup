@@ -156,8 +156,21 @@ h1 {
 }
 
 .seekBar {
-  background: #2a5d614a;
-  width: 64%;
+  background: #4f485ab0;
+  width: 44%;
+}
+
+.volumeBar {
+  background: #28418696;
+  width: 11%;
+  color: white;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 table {
@@ -242,8 +255,13 @@ window.onwheel = (event) => {
     }
 };
 
+renderVolumeBar = (volumeLevel) => {
+  var newGradient = "".concat("linear-gradient(90deg , #bfbfbff0 ", String(volumeLevel * 100),"%, #28418696 0%)");
+  document.getElementById('volumeBar').style.background = newGradient;
+};
+
 renderSeekBar = (time, songLength) => {
-  var newGradient = "".concat("linear-gradient(90deg , #bf156af0 ", String(time/songLength * 100),"%, #2a5d614a 0%)");
+  var newGradient = "".concat("linear-gradient(90deg , #bf156af0 ", String(time/songLength * 100),"%, #4f485ab0 0%)");
   document.getElementById('seekBar').style.background = newGradient;
 };
 
@@ -276,7 +294,8 @@ SC.stream('/tracks/690567997').then(function(player){
       playing = false;
     }
     if(!playerReady){
-      SCPlayer.setVolume(1);
+      SCPlayer.setVolume(0.5);
+      renderVolumeBar(0.5);
       playerReady = true;
     }
   });
@@ -558,6 +577,27 @@ toggleSync = () => {
   }
 };
 
+adjustVolume = (event) => {
+  volumeBar = document.getElementById('volumeBar');
+  var volumeBarWidth = volumeBar.clientWidth;
+
+  var volumeLevel = event.offsetX / volumeBarWidth;
+  console.log(volumeLevel)
+
+  SCPlayer.setVolume(volumeLevel);
+  renderVolumeBar(volumeLevel);
+}
+
+maxVolume = () => {
+  SCPlayer.setVolume(1);
+  renderVolumeBar(1);
+}
+
+minVolume = () => {
+  SCPlayer.setVolume(0);
+  renderVolumeBar(0);
+}
+
 seek = (event) => {
   var songLength = SCPlayer.getDuration();
   seekBar = document.getElementById('seekBar');
@@ -638,6 +678,10 @@ seekToZero = () => {
     <table>
       <td class='spacerLeft' onclick='seekToZero()'></td>
       <td class='seekBar' id='seekBar' onclick='seek(event)'></td>
+      <td class='spacer'></td>
+      <td class='spacer' onclick='minVolume()'></td>
+      <td class='volumeBar' id='volumeBar' onclick='adjustVolume(event)'>< ) )</td>
+      <td class='spacer' onclick='maxVolume()'></td>
       <td class='spacer'></td>
       <td class='button'><button onclick='togglePlay()' id='playbutton'>PAUSED</button></td>
       <td class='spacer'></td>
