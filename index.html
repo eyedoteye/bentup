@@ -268,7 +268,7 @@ renderSeekBar = (time, songLength) => {
 
 SCPlayer = 0;
 playerReady = false;
-SC.stream('soundcloud.com/akabaka/the-oddstrange-1').then(function(player){
+SC.stream('https://soundcloud.com/akabaka/the-oddstrange-1').then(function(player){
   SCPlayer = player;
   SCPlayer.setVolume(0)
   SCPlayer.play().then(()=>{
